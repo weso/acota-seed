@@ -5,7 +5,7 @@ Develop: [![Build Status](https://travis-ci.org/weso/acota-seed.png?branch=devel
 
 
 ## What is it? ##
-Acota-seed is the starting point of all Acota Projects.
+Acota-seed is the starting point for all Acota Projects.
 
  Looking for SNAPSHOTS?
 * [SNAPSHOTS](https://oss.sonatype.org/content/repositories/snapshots/es/weso/acota-seed "Acota-seed SNAPSHOTS Repository")

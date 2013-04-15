@@ -5,10 +5,10 @@
 	<groupId>es.weso</groupId>
 	<artifactId>acota-seed</artifactId>
 	<version>0.3.8-SNAPSHOT</version>
-	<name>acota-core</name>
+	<name>acota-seed</name>
 	<packaging>jar</packaging>
 	<description>acota-seed, library ${project.version}</description>
-	<url>https://github.com/weso/acota-core</url>
+	<url>https://github.com/weso/acota-seed</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -57,6 +57,24 @@
 			<artifactId>mockito-all</artifactId>
 			<version>1.9.5</version>
 			<scope>test</scope>
+		</dependency>
+		<!-- For Logging purposes -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<!-- Apache Langs Utils -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+  			<artifactId>commons-lang3</artifactId>
+  			<version>3.1</version>
+		</dependency>
+		<!-- Apache Configuration Utils -->
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.9</version>
 		</dependency>
 	</dependencies>
 	<parent>
