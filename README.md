@@ -1,7 +1,7 @@
 <img src="http://weso.es/img/logo_acota_850.png">
 # ACOTA:  Automatic Collaborative Tagging 
-Master: [![Build Status](https://travis-ci.org/weso/acota-seed.png?branch=master)](https://github.com/weso/acota-seed/tree/master)
-Develop: [![Build Status](https://travis-ci.org/weso/acota-seed.png?branch=develop)](https://github.com/weso/acota-seed/tree/develop)
+Master: [![Build Status](https://travis-ci.org/weso/acota-seed.png?branch=master)](https://travis-ci.org/weso/acota-seed)
+Develop: [![Build Status](https://travis-ci.org/weso/acota-seed.png?branch=develop)](https://travis-ci.org/weso/acota-seed)
 
 
 ## What is it? ##
