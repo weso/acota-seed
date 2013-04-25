@@ -76,6 +76,18 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>1.9</version>
 		</dependency>
+		<!--LangDetect - Commons IO -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<!--LangDetect - Language Detection -->
+		<dependency>
+			<groupId>com.cybozu.labs</groupId>
+			<artifactId>langdetect</artifactId>
+			<version>1.1-20120112</version>
+		</dependency>
 	</dependencies>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
