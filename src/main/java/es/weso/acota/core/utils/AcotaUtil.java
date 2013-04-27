@@ -16,7 +16,7 @@ import es.weso.acota.core.entity.TagTO;
  * @author César Luis Alvargonzález
  * @since 0.3.8
  */
-public class AcotaUtils {
+public class AcotaUtil {
 	
 	/**
 	 * Sets the following enhancer as successor to the current enhancer, and so forth.
@@ -53,11 +53,11 @@ public class AcotaUtils {
 	}
 	
 	/**
-	 * Clones a Map with String as key and TagTO as value
+	 * Backups a Map with String as key and TagTO as value
 	 * @param tags Map to clone
 	 * @return Tags Map cloned
 	 */
-	public static Map<String, TagTO> cloneTags(Map<String, TagTO> tags) {
+	public static Map<String, TagTO> backupTags(Map<String, TagTO> tags) {
 		Map<String, TagTO> backupMap = new HashMap<String, TagTO>();
 		
 		for (Entry<String, TagTO> label : tags.entrySet()) {

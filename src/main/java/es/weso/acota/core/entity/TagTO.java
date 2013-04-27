@@ -110,9 +110,13 @@ public class TagTO implements Comparable<TagTO>{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((label == null) ? 0 : label.hashCode());
+		result = prime * result + ((lang == null) ? 0 : lang.hashCode());
 		result = prime * result
 				+ ((provider == null) ? 0 : provider.hashCode());
 		result = prime * result + ((tagged == null) ? 0 : tagged.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(value);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -130,6 +134,11 @@ public class TagTO implements Comparable<TagTO>{
 				return false;
 		} else if (!label.equals(other.label))
 			return false;
+		if (lang == null) {
+			if (other.lang != null)
+				return false;
+		} else if (!lang.equals(other.lang))
+			return false;
 		if (provider == null) {
 			if (other.provider != null)
 				return false;
@@ -139,6 +148,9 @@ public class TagTO implements Comparable<TagTO>{
 			if (other.tagged != null)
 				return false;
 		} else if (!tagged.equals(other.tagged))
+			return false;
+		if (Double.doubleToLongBits(value) != Double
+				.doubleToLongBits(other.value))
 			return false;
 		return true;
 	}

@@ -1,5 +1,7 @@
 package es.weso.acota.core;
 
+import org.apache.commons.configuration.CompositeConfiguration;
+
 import es.weso.acota.core.exceptions.AcotaConfigurationException;
 
 /**
@@ -13,5 +15,5 @@ public interface Configuration {
 	 * @throws AcotaConfigurationException Any exception that occurs 
 	 * while initializing a Configuration object
 	 */
-	public void loadsConfiguration() throws AcotaConfigurationException;
+	public void loadsConfiguration(CompositeConfiguration configuration) throws AcotaConfigurationException;
 }

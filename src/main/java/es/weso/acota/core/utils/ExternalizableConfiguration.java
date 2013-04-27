@@ -7,5 +7,10 @@ import org.apache.commons.configuration.PropertiesConfiguration;
  *
  */
 public interface ExternalizableConfiguration {
+	
+	/**
+	 * Retrieves the external Object Configuration
+	 * @return External properties configuration
+	 */
 	PropertiesConfiguration getConfiguration();
 }

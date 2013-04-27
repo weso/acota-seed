@@ -1,23 +1,39 @@
 package es.weso.acota.core.exceptions;
+
 /**
- * 
+ * An exception that occurs while executing Acota
  * @author César Luis Alvargonzález
- *
  */
 public class AcotaModelException extends RuntimeException {
 
 	private static final long serialVersionUID = -2568767031496911589L;
 
-	public AcotaModelException(Exception e) {
-		super(e);
+	/**
+	 * Constructs a new AcotaModelException with the 
+	 * specified cause
+	 * @param cause the cause
+	 */
+	public AcotaModelException(Exception cause) {
+		super(cause);
 	}
 
-	public AcotaModelException(String string) {
-		super(string);
+	/**
+	 * Constructs a new AcotaModelException with 
+	 * the specified detail message.
+	 * @param message the detail message
+	 */
+	public AcotaModelException(String message) {
+		super(message);
 	}
 
-	public AcotaModelException(Exception e, String string) {
-		super(string, e);
+	/**
+	 * Constructs a new AcotaModelException with the
+	 *  specified detail message and cause.
+	 * @param message the detail message
+	 * @param cause the cause
+	 */
+	public AcotaModelException(Exception message, String cause) {
+		super(cause, message);
 	}
 	
 }

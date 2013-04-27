@@ -13,6 +13,7 @@ import com.cybozu.labs.langdetect.Detector;
 import com.cybozu.labs.langdetect.DetectorFactory;
 import com.cybozu.labs.langdetect.LangDetectException;
 
+import es.weso.acota.core.business.enhancer.SeedConfiguration;
 import es.weso.acota.core.exceptions.AcotaConfigurationException;
 
 /**
@@ -22,10 +23,53 @@ import es.weso.acota.core.exceptions.AcotaConfigurationException;
  * 
  * @author César Luis Alvargonzález
  */
-public abstract class LanguageUtil {
+public class LanguageDetector {
+	public static final String UTF_8 = "utf-8";
+	public static final String ISO_639_GERMAN = "de";
 	public static final String ISO_639_ENGLISH = "en";
 	public static final String ISO_639_SPANISH = "es";
+	public static final String ISO_639_FRENCH = "fr";
+	public static final String ISO_639_PORTUGESE = "pt";
 	public static final String ISO_639_UNDEFINED = "undefined";
+	
+	public static LanguageDetector LANGUAGE_UTIL_INSTANCE;
+
+	protected String profilesPath;
+	protected String[] profiles;
+	
+	/**
+	 * 
+	 * @param configuration
+	 * @throws AcotaConfigurationException
+	 */
+	private LanguageDetector(SeedConfiguration configuration) throws AcotaConfigurationException{
+		super();
+		loadConfiguration(configuration);
+	}
+	
+	/**
+	 * 
+	 * @param configuration
+	 * @return
+	 * @throws AcotaConfigurationException
+	 */
+	public static LanguageDetector getInstance(SeedConfiguration configuration) throws AcotaConfigurationException{
+		if(LANGUAGE_UTIL_INSTANCE==null)
+			LanguageDetector.LANGUAGE_UTIL_INSTANCE = new LanguageDetector(configuration);
+		return LANGUAGE_UTIL_INSTANCE;
+	}
+	
+	/**
+	 * 
+	 * @param configuration
+	 * @throws AcotaConfigurationException
+	 */
+	public void loadConfiguration(SeedConfiguration configuration) throws AcotaConfigurationException{
+		if(configuration == null)
+			configuration = new SeedConfiguration();
+		this.profilesPath = configuration.getLanguageProfilesPath();
+		this.profiles = configuration.getLanguageProfiles();
+	}
 	
 	/**
 	 * Detects the language of the supplied text
@@ -34,7 +78,7 @@ public abstract class LanguageUtil {
 	 * @throws AcotaConfigurationException Any exception that occurs 
 	 * while initializing a Configuration object
 	 */
-	public static String detect(String text) throws AcotaConfigurationException{
+	public String detect(String text) throws AcotaConfigurationException{
 		Detector detector = null;
 		
 		if(text.isEmpty() || NumberUtils.isNumber(text))
@@ -56,16 +100,15 @@ public abstract class LanguageUtil {
 	 * @throws AcotaConfigurationException Any exception that occurs 
 	 * while initializing a Configuration object
 	 */
-	private static void loadProfilesAsJson() throws AcotaConfigurationException {
+	private void loadProfilesAsJson() throws AcotaConfigurationException {
 		try{
-			String[] lan = new String[]{"de","en","es","fr","pt"};
 			InputStream input = null;
 			StringWriter writer = null;
 			List<String> languages = new LinkedList<String>();
-			for(String language : lan){
-				input = LanguageUtil.class.getClassLoader().getResourceAsStream("resources/profiles/"+language);
+			for(String language : profiles){
+				input = LanguageDetector.class.getClassLoader().getResourceAsStream(profilesPath+"/"+language);
 				writer = new StringWriter();
-				IOUtils.copy(input, writer, "utf-8");
+				IOUtils.copy(input, writer, UTF_8);
 				languages.add(writer.toString());
 			}
 			DetectorFactory.loadProfile(languages);
