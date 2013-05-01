@@ -19,7 +19,7 @@ import es.weso.acota.core.exceptions.AcotaConfigurationException;
 /**
  * Language Detection Util-Class, this class perform the language detection
  * and also contains the ISO 639 Codes supported by ACOTA. 
- * @see http://en.wikipedia.org/wiki/ISO_639
+ * @see <a href="http://en.wikipedia.org/wiki/ISO_639">http://en.wikipedia.org/wiki/ISO_639</a>
  * 
  * @author César Luis Alvargonzález
  */
