@@ -32,10 +32,10 @@ public class SeedConfiguration implements Configuration{
 	public SeedConfiguration() throws AcotaConfigurationException {
 		super();
 		SeedConfiguration.LOGGER = Logger.getLogger(SeedConfiguration.class);
-		SeedConfiguration.CONFIG = foo(CONFIG);
+		SeedConfiguration.CONFIG = configure(CONFIG);
 	}
 	
-	protected CompositeConfiguration foo(CompositeConfiguration config) throws AcotaConfigurationException {
+	protected CompositeConfiguration configure(CompositeConfiguration config) throws AcotaConfigurationException {
 		if (config == null) {
 			config = new CompositeConfiguration();
 			loadsConfiguration(config);
@@ -64,14 +64,14 @@ public class SeedConfiguration implements Configuration{
 	public final void loadsConfiguration(CompositeConfiguration configuration) throws AcotaConfigurationException {
 		if(CONFIG==null){
 			try {
-				configuration.addConfiguration(new PropertiesConfiguration(
+				configuration.append(new PropertiesConfiguration(
 						"acota.properties"));
 			} catch (Exception e) {
 				LOGGER.warn("acota.properties not found, Using default values.");
 			}
 			
 			try {
-				configuration.addConfiguration(new PropertiesConfiguration(this.getClass().getClassLoader()
+				configuration.append(new PropertiesConfiguration(this.getClass().getClassLoader()
 						.getResource(INTERNAL_ACOTA_SEED_PROPERTIES_PATH)));
 			} catch (ConfigurationException e) {
 				throw new AcotaConfigurationException(e);
@@ -81,12 +81,6 @@ public class SeedConfiguration implements Configuration{
 			if(!configuration.equals(CONFIG))
 				loadCustomConfiguration(configuration);
 		}
-		/*
-		System.out.println(CONFIG);
-		System.out.println(configuration);
-		
-		if(CONFIG != null && !configuration.equals(CONFIG))
-			loadCustomConfiguration(configuration);*/
 		
 	}
 
@@ -94,14 +88,14 @@ public class SeedConfiguration implements Configuration{
 	 * 
 	 * @throws AcotaConfigurationException
 	 */
-	protected void loadCustomConfiguration(CompositeConfiguration config)  throws AcotaConfigurationException{}
+	protected void loadCustomConfiguration(CompositeConfiguration configuration)  throws AcotaConfigurationException{}
 
 	/**
 	 * Loads Language Detection Files Configuration
 	 */
-	private void loadLanguageDetectorConfig(CompositeConfiguration config) {
-		this.setLanguageProfilesPath(config.getString("language.profiles.path"));
-		List<?> profiles = config.getList("language.profiles");
+	private void loadLanguageDetectorConfig(CompositeConfiguration configuration) {
+		this.setLanguageProfilesPath(configuration.getString("language.profiles.path"));
+		List<?> profiles = configuration.getList("language.profiles");
 		this.setLanguageProfiles(profiles.toArray(new String[profiles.size()]));
 	}
 	
