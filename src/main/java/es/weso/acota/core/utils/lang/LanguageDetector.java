@@ -81,17 +81,16 @@ public class LanguageDetector {
 	public String detect(String text) throws AcotaConfigurationException{
 		Detector detector = null;
 		
-		if(text.isEmpty() || NumberUtils.isNumber(text))
-			return ISO_639_UNDEFINED;
-		try{
-			if(DetectorFactory.getLangList().isEmpty()){
-				loadProfilesAsJson();
-			}
+		if(DetectorFactory.getLangList().isEmpty()){
+			loadProfilesAsJson();	
+		}
+		
+		try{	
 			detector = DetectorFactory.create();
 			detector.append(text);
 			return detector.detect();
 		}catch(LangDetectException e){
-			throw new AcotaConfigurationException("Failed langdetec initialization: "+text, e);
+			return LanguageDetector.ISO_639_UNDEFINED;
 		}	
 	}
 	

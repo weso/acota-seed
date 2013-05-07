@@ -86,12 +86,14 @@ public class SeedConfiguration implements Configuration{
 
 	/**
 	 * 
+	 * @param configuration 
 	 * @throws AcotaConfigurationException
 	 */
 	protected void loadCustomConfiguration(CompositeConfiguration configuration)  throws AcotaConfigurationException{}
 
 	/**
 	 * Loads Language Detection Files Configuration
+	 * @param configuration 
 	 */
 	private void loadLanguageDetectorConfig(CompositeConfiguration configuration) {
 		this.setLanguageProfilesPath(configuration.getString("language.profiles.path"));
