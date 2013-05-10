@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 
 import com.cybozu.labs.langdetect.Detector;
 import com.cybozu.labs.langdetect.DetectorFactory;
@@ -38,9 +37,10 @@ public class LanguageDetector {
 	protected String[] profiles;
 	
 	/**
-	 * 
-	 * @param configuration
-	 * @throws AcotaConfigurationException
+	 * Default Constructor
+	 * @param configuration Acota-Seed Configuration Object
+	 * @throws AcotaConfigurationException Any exception that occurs 
+	 * while initializing a Configuration object
 	 */
 	private LanguageDetector(SeedConfiguration configuration) throws AcotaConfigurationException{
 		super();
@@ -48,21 +48,25 @@ public class LanguageDetector {
 	}
 	
 	/**
-	 * 
-	 * @param configuration
-	 * @return
-	 * @throws AcotaConfigurationException
+	 * Gets an instance of {@link LanguageDetector}, 
+	 * in the case it does not exists, it will create one,
+	 * @param configuration Acota-Seed Configuration Object
+	 * @return The {@link LanguageDetector} Instance
+	 * @throws AcotaConfigurationException Any exception that occurs 
+	 * while initializing a Configuration object
 	 */
 	public static LanguageDetector getInstance(SeedConfiguration configuration) throws AcotaConfigurationException{
 		if(LANGUAGE_UTIL_INSTANCE==null)
 			LanguageDetector.LANGUAGE_UTIL_INSTANCE = new LanguageDetector(configuration);
+		else LANGUAGE_UTIL_INSTANCE.loadConfiguration(configuration);
 		return LANGUAGE_UTIL_INSTANCE;
 	}
 	
 	/**
-	 * 
-	 * @param configuration
-	 * @throws AcotaConfigurationException
+	 *  Loads Seed Configuration
+	 * @param configuration Acota-Seed Configuration Object
+	 * @throws AcotaConfigurationException Any exception that occurs 
+	 * while initializing a Configuration object
 	 */
 	public void loadConfiguration(SeedConfiguration configuration) throws AcotaConfigurationException{
 		if(configuration == null)

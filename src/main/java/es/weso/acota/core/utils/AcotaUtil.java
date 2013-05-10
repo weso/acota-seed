@@ -58,12 +58,6 @@ public class AcotaUtil {
 	 * @return Tags Map cloned
 	 */
 	public static Map<String, TagTO> backupTags(Map<String, TagTO> tags) {
-		Map<String, TagTO> backupMap = new HashMap<String, TagTO>();
-		
-		for (Entry<String, TagTO> label : tags.entrySet()) {
-			backupMap.put(label.getKey(), label.getValue());
-		}
-		
-		return backupMap;
+		return new HashMap<String, TagTO>(tags);
 	}
 }
