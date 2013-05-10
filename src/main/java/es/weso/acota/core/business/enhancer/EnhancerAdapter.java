@@ -2,7 +2,6 @@ package es.weso.acota.core.business.enhancer;
 
 import java.util.Map;
 
-import org.apache.commons.configuration.ConfigurationException;
 import org.apache.log4j.Logger;
 
 import es.weso.acota.core.entity.ProviderTO;
@@ -12,7 +11,7 @@ import es.weso.acota.core.entity.TagTO;
 import es.weso.acota.core.exceptions.AcotaModelException;
 
 /**
- * Abstract class that implements {@link Enhacer} interface, it implements
+ * Abstract class that implements {@link Enhancer} interface, it implements
  * the chain-of-responsibility design pattern
  * 
  * @author César Luis Alvargonzález
@@ -31,11 +30,9 @@ public abstract class EnhancerAdapter implements Enhancer {
 	
 	/**
 	 * Zero-argument default constructor.
-	 *
-	 * @throws ConfigurationException Any exception that occurs while initializing a Configuration
-	 *             object
 	 */
 	public EnhancerAdapter(){
+		super();
 		EnhancerAdapter.logger = Logger.getLogger(EnhancerAdapter.class);
 	}
 	
@@ -76,13 +73,11 @@ public abstract class EnhancerAdapter implements Enhancer {
 	 * @return Current SuggestionTO
 	 */
 	public SuggestionTO getSuggest(){
-		if(this.suggest==null){
+		if(suggest==null){
 			logger.debug("New instance singleton of suggestions");
-			return (suggest = new SuggestionTO());
-		}else{
-			logger.debug("Get instance singleton of suggestions");
-			return this.suggest;
+			this.suggest = new SuggestionTO();
 		}
+		return suggest;
 	}
 	
 	/**
@@ -105,7 +100,7 @@ public abstract class EnhancerAdapter implements Enhancer {
 	
 	/**
 	 * Adds some weight to a specific {@link TagTO}
-	 * @param tags {@link TagTO}'s name
+	 * @param tag {@link TagTO} to increment its weight
 	 * @param weight Weight to add to the {@link TagTO}'s weight
 	 */
 	protected void fillSuggestions(TagTO tag, double weight) {

@@ -21,7 +21,7 @@ public class AcotaConfigurationException extends Exception{
 	/**
 	 * Constructs a new AcotaConfigurationException with 
 	 * the specified detail message.
-	 * @param text the detail message
+	 * @param message the detail message
 	 */
 	public AcotaConfigurationException(String message){
 		super(message);
