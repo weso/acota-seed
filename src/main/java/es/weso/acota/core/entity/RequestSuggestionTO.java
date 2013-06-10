@@ -21,6 +21,9 @@ public class RequestSuggestionTO {
 	 */
 	public RequestSuggestionTO() {
 		super();
+		this.resource = new ResourceTO();
+		this.suggestions = new SuggestionTO();
+		this.targetProviders = new ArrayList<ProviderTO>();
 	}
 
 	/**
@@ -30,6 +33,8 @@ public class RequestSuggestionTO {
 	public RequestSuggestionTO(ResourceTO resource) {
 		super();
 		this.resource = resource;
+		this.suggestions = new SuggestionTO();
+		this.targetProviders = new ArrayList<ProviderTO>();
 	}
 	
 	/**
@@ -47,8 +52,6 @@ public class RequestSuggestionTO {
 	}
 	
 	public ResourceTO getResource() {
-		if(resource==null)
-			this.resource=new ResourceTO();
 		return resource;
 	}
 
@@ -57,9 +60,6 @@ public class RequestSuggestionTO {
 	}
 
 	public List<ProviderTO> getTargetProviders() {
-		if (targetProviders == null) {
-			this.targetProviders = new ArrayList<ProviderTO>();
-		}
 		return targetProviders;
 	}
 
@@ -72,8 +72,10 @@ public class RequestSuggestionTO {
 	}
 
 	public SuggestionTO getSuggestions() {
-		if(suggestions==null)
-			this.suggestions = new SuggestionTO();
 		return suggestions;
+	}
+	
+	public void clearSuggestions(){
+		this.suggestions.getTags().clear();
 	}
 }

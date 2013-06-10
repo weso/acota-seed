@@ -47,11 +47,16 @@ public abstract class EnhancerAdapter implements Enhancer {
 	public SuggestionTO enhance(RequestSuggestionTO request) {
 		try{
 			this.request = request;
+			this.suggest = request.getSuggestions();
+			this.tags = suggest.getTags();
+			suggest.setResource(request.getResource());
+			
 			preExecute();
 			execute();
 			postExecute();
+			
 			if(successor != null){
-				return successor.enhance(this.request);
+				return successor.enhance(request);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

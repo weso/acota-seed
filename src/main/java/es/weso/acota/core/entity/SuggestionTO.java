@@ -1,7 +1,9 @@
 package es.weso.acota.core.entity;
 
-import java.util.LinkedHashMap;
+import java.text.Collator;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Contains the results of the Enhancement
@@ -18,7 +20,9 @@ public class SuggestionTO {
 	 */
 	public SuggestionTO() {
 		super();
-		this.tags = new LinkedHashMap<String, TagTO>();
+		Collator collator = Collator.getInstance();
+		collator.setStrength(Collator.PRIMARY);
+		this.tags = new TreeMap<String, TagTO>(collator);
 		this.resource = new ResourceTO();
 	}
 
@@ -28,7 +32,9 @@ public class SuggestionTO {
 	 */
 	public SuggestionTO(ResourceTO resource) {
 		super();
-		this.tags = new LinkedHashMap<String, TagTO>();
+		Collator collator = Collator.getInstance();
+		collator.setStrength(Collator.PRIMARY);
+		this.tags = new HashMap<String, TagTO>();
 		this.resource = resource;
 	}
 	
